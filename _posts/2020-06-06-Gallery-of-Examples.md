@@ -152,13 +152,13 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
 
     from wordcloud import WordCloud, STOPWORDS
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-    # Read the whole text.
+    # 전체 본문을 읽는다.
     text = open(path.join(d, 'alice.txt')).read()
 
-    # read the mask image
+    # mask 이미지를 읽는다.
     # taken from
     # http://www.stencilry.org/stencils/movies/alice%20in%20wonderland/255fk.jpg
     alice_mask = np.array(Image.open(path.join(d, "alice_mask.png")))
@@ -169,10 +169,10 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
     wc = WordCloud(background_color="white", max_words=2000, mask=alice_mask,
                    stopwords=stopwords, contour_width=3, contour_color='steelblue')
 
-    # generate word cloud
+    # World cloud 이미지 생성
     wc.generate(text)
 
-    # store to file
+    # 파일에 저장하기
     wc.to_file(path.join(d, "alice.png"))
 
     # show
