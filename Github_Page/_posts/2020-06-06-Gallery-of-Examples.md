@@ -70,17 +70,17 @@ Out:
     # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함) 
     d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-    # Read the whole text.
+    # 전체 본문을 읽는다.
     f = codecs.open(os.path.join(d, 'arabicwords.txt'), 'r', 'utf-8')
 
-    # Make text readable for a non-Arabic library like wordcloud
+    # Word cloud처럼 아라빅이 아닌 라이브러리에 대해 텍스트를 읽을 수 있도록 설정
     text = arabic_reshaper.reshape(f.read())
     text = get_display(text)
 
-    # Generate a word cloud image
+    # World cloud 이미지 생성
     wordcloud = WordCloud(font_path='fonts/NotoNaskhArabic/NotoNaskhArabic-Regular.ttf').generate(text)
 
-    # Export to an image
+    # 이미지로 내보내기
     wordcloud.to_file("arabic_example.png
     
     
