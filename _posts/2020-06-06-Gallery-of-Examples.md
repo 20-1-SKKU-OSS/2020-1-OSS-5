@@ -211,7 +211,7 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
         fullTermsDict = multidict.MultiDict()
         tmpDict = {}
 
-        # making dict for counting frequencies
+        # 빈도 계산에 대한 명령어 작성
         for text in sentence.split(" "):
             if re.match("a|the|an|the|to|in|for|of|or|by|with|is|on|that|be", text):
                 continue
@@ -226,7 +226,7 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
         alice_mask = np.array(Image.open("alice_mask.png"))
 
         wc = WordCloud(background_color="white", max_words=1000, mask=alice_mask)
-        # generate word cloud
+        # World cloud 생성
         wc.generate_from_frequencies(text)
 
         # show
@@ -235,7 +235,7 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
         plt.show()
 
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
     text = open(path.join(d, 'alice.txt'), encoding='utf-8')
