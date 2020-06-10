@@ -104,29 +104,29 @@ Minimal Example
     from os import path
     from wordcloud import WordCloud
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-    # Read the whole text.
+    # 전체 본문을 읽는다.
     text = open(path.join(d, 'constitution.txt')).read()
 
-    # Generate a word cloud image
+    # World cloud 이미지 생성
     wordcloud = WordCloud().generate(text)
 
-    # Display the generated image:
-    # the matplotlib way:
+    # 생성된 이미지 표시:
+    # matplotlib 방식:
     import matplotlib.pyplot as plt
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
 
-    # lower max_font_size
+    # 낮은 max_font_size
     wordcloud = WordCloud(max_font_size=40).generate(text)
     plt.figure()
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.axis("off")
     plt.show()
 
-    # The pil way (if you don't have matplotlib)
+    # The pil way (matplotlib가 없을 경우)
     # image = wordcloud.to_image()
     # image.show()
 
