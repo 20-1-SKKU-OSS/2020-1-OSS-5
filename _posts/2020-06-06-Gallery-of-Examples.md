@@ -681,31 +681,31 @@ Prefix dict has been built successfully.
     If the implementation is easy to explain, it may be a good idea.
     Namespaces are one honking great idea -- let's do more of those!"""
 
-    # Since the text is small collocations are turned off and text is lower-cased
+    # 텍스트가 작은 경우 정렬이 해제되고 텍스트가 낮은 경우
     wc = WordCloud(collocations=False).generate(text.lower())
 
     color_to_words = {
-        # words below will be colored with a green single color function
+        # 아래의 단어는 green 단일 색상 기능으로 색칠됨
         '#00ff00': ['beautiful', 'explicit', 'simple', 'sparse',
                     'readability', 'rules', 'practicality',
                     'explicitly', 'one', 'now', 'easy', 'obvious', 'better'],
-        # will be colored with a red single color function
+        # 빨간색 단일 색상 기능으로 색상 지정
         'red': ['ugly', 'implicit', 'complex', 'complicated', 'nested',
                 'dense', 'special', 'errors', 'silently', 'ambiguity',
                 'guess', 'hard']
     }
 
-    # Words that are not in any of the color_to_words values
-    # will be colored with a grey single color function
+    # color_to_words 값에 없는 단어
+    # 회색 단일 색상 기능으로 색상 지정
     default_color = 'grey'
 
-    # Create a color function with single tone
+    # 단일 톤으로 색상 기능 생성
     # grouped_color_func = SimpleGroupedColorFunc(color_to_words, default_color)
 
-    # Create a color function with multiple tones
+    # 멀티 톤으로 색상 기능 생성
     grouped_color_func = GroupedColorFunc(color_to_words, default_color)
 
-    # Apply our color function
+    #  색상 적용 함수
     wc.recolor(color_func=grouped_color_func)
 
     # Plot
