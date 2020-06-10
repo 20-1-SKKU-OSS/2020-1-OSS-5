@@ -73,11 +73,11 @@ Out:
     # 전체 본문을 읽는다.
     f = codecs.open(os.path.join(d, 'arabicwords.txt'), 'r', 'utf-8')
 
-    # Word cloud처럼 아라빅이 아닌 라이브러리에 대해 텍스트를 읽을 수 있도록 설정
+    # word cloud처럼 아라빅이 아닌 라이브러리에 대해 텍스트를 읽을 수 있도록 설정
     text = arabic_reshaper.reshape(f.read())
     text = get_display(text)
 
-    # World cloud 이미지 생성
+    # world cloud 이미지 생성
     wordcloud = WordCloud(font_path='fonts/NotoNaskhArabic/NotoNaskhArabic-Regular.ttf').generate(text)
 
     # 이미지로 내보내기
@@ -110,7 +110,7 @@ Minimal Example
     # 전체 본문을 읽는다.
     text = open(path.join(d, 'constitution.txt')).read()
 
-    # World cloud 이미지 생성
+    # world cloud 이미지 생성
     wordcloud = WordCloud().generate(text)
 
     # 생성된 이미지 표시:
@@ -152,7 +152,7 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
 
     from wordcloud import WordCloud, STOPWORDS
 
-   # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
     # 전체 본문을 읽는다.
@@ -226,7 +226,7 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
         alice_mask = np.array(Image.open("alice_mask.png"))
 
         wc = WordCloud(background_color="white", max_words=1000, mask=alice_mask)
-        # World cloud 생성
+        # world cloud 생성
         wc.generate_from_frequencies(text)
 
         # show
@@ -422,7 +422,7 @@ ImageColorGenerator에서 구현된 이미지 기반 색상 지정 방법을 사
 
     from wordcloud import WordCloud, ImageColorGenerator
 
-   # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
     # 위키백과 텍스트를 무지개에 로드
