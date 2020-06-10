@@ -260,13 +260,13 @@ ImageColorGenerator에서 구현된 이미지 기반 색상 지정 방법을 사
 
     from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-    # Read the whole text.
+    # 전체 본문을 읽는다.
     text = open(path.join(d, 'alice.txt')).read()
 
-    # read the mask / color image taken from
+    # mask/색상 이미지 읽기
     # http://jirkavinse.deviantart.com/art/quot-Real-Life-quot-Alice-282261010
     alice_coloring = np.array(Image.open(path.join(d, "alice_color.png")))
     stopwords = set(STOPWORDS)
@@ -274,17 +274,17 @@ ImageColorGenerator에서 구현된 이미지 기반 색상 지정 방법을 사
 
     wc = WordCloud(background_color="white", max_words=2000, mask=alice_coloring,
                    stopwords=stopwords, max_font_size=40, random_state=42)
-    # generate word cloud
+    # Word cloud 생성
     wc.generate(text)
 
-    # create coloring from image
+    # 이미지에서 색상 생성
     image_colors = ImageColorGenerator(alice_coloring)
 
     # show
     fig, axes = plt.subplots(1, 3)
     axes[0].imshow(wc, interpolation="bilinear")
-    # recolor wordcloud and show
-    # we could also give color_func=image_colors directly in the constructor
+    # word cloud 색상 변경 후 show
+    # 생성자에게 직접적으로 color_func=image_colors를 줄 수 있다. 
     axes[1].imshow(wc.recolor(color_func=image_colors), interpolation="bilinear")
     axes[2].imshow(alice_coloring, cmap=plt.cm.gray, interpolation="bilinear")
     for ax in axes:
