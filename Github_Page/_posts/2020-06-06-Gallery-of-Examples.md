@@ -67,7 +67,7 @@ Out:
     import arabic_reshaper
     from bidi.algorithm import get_display
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함) 
     d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
     # Read the whole text.
