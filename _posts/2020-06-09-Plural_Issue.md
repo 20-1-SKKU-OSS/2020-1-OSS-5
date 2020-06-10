@@ -3,7 +3,7 @@ layout: post
 title: "[Plural Issue] Plural 이슈 해결 과정"
 tags: [WordCloud Plural Issue]
 ---
-> Word cloud 내부의 존재하던 Plural Issue를 해결하는 과정을 담은 문서입니다.
+> Word cloud 내부에 존재하던 Plural Issue를 해결하는 과정을 담은 문서입니다.
 <hr>
 
 우리 팀은 word cloud 프로젝트에서 흥미로운 이슈들이 무엇이 존재하는지 탐색했고, 그 중 우리가 해결할 수 있을 것같은 이슈를 발견하였다.
