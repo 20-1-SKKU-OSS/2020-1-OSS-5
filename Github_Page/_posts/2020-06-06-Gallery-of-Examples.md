@@ -104,29 +104,29 @@ Minimal Example
     from os import path
     from wordcloud import WordCloud
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-    # Read the whole text.
+    # 전체 본문을 읽는다.
     text = open(path.join(d, 'constitution.txt')).read()
 
-    # Generate a word cloud image
+    # World cloud 이미지 생성
     wordcloud = WordCloud().generate(text)
 
-    # Display the generated image:
-    # the matplotlib way:
+    # 생성된 이미지 표시:
+    # matplotlib 방식:
     import matplotlib.pyplot as plt
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
 
-    # lower max_font_size
+    # 낮은 max_font_size
     wordcloud = WordCloud(max_font_size=40).generate(text)
     plt.figure()
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.axis("off")
     plt.show()
 
-    # The pil way (if you don't have matplotlib)
+    # The pil way (matplotlib가 없을 경우)
     # image = wordcloud.to_image()
     # image.show()
 
@@ -152,13 +152,13 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
 
     from wordcloud import WordCloud, STOPWORDS
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+   # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-    # Read the whole text.
+    # 전체 본문을 읽는다.
     text = open(path.join(d, 'alice.txt')).read()
 
-    # read the mask image
+    # mask 이미지를 읽는다.
     # taken from
     # http://www.stencilry.org/stencils/movies/alice%20in%20wonderland/255fk.jpg
     alice_mask = np.array(Image.open(path.join(d, "alice_mask.png")))
@@ -169,10 +169,10 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
     wc = WordCloud(background_color="white", max_words=2000, mask=alice_mask,
                    stopwords=stopwords, contour_width=3, contour_color='steelblue')
 
-    # generate word cloud
+    # World cloud 이미지 생성
     wc.generate(text)
 
-    # store to file
+    # 파일에 저장하기
     wc.to_file(path.join(d, "alice.png"))
 
     # show
@@ -211,7 +211,7 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
         fullTermsDict = multidict.MultiDict()
         tmpDict = {}
 
-        # making dict for counting frequencies
+        # 빈도 계산에 대한 명령어 작성
         for text in sentence.split(" "):
             if re.match("a|the|an|the|to|in|for|of|or|by|with|is|on|that|be", text):
                 continue
@@ -226,7 +226,7 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
         alice_mask = np.array(Image.open("alice_mask.png"))
 
         wc = WordCloud(background_color="white", max_words=1000, mask=alice_mask)
-        # generate word cloud
+        # World cloud 생성
         wc.generate_from_frequencies(text)
 
         # show
@@ -235,7 +235,7 @@ Mask를 사용하면 임의의 모양으로 word cloud를 생성할 수 있습�
         plt.show()
 
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
     text = open(path.join(d, 'alice.txt'), encoding='utf-8')
@@ -260,13 +260,13 @@ ImageColorGenerator에서 구현된 이미지 기반 색상 지정 방법을 사
 
     from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-    # Read the whole text.
+    # 전체 본문을 읽는다.
     text = open(path.join(d, 'alice.txt')).read()
 
-    # read the mask / color image taken from
+    # mask/색상 이미지 읽기
     # http://jirkavinse.deviantart.com/art/quot-Real-Life-quot-Alice-282261010
     alice_coloring = np.array(Image.open(path.join(d, "alice_color.png")))
     stopwords = set(STOPWORDS)
@@ -274,17 +274,17 @@ ImageColorGenerator에서 구현된 이미지 기반 색상 지정 방법을 사
 
     wc = WordCloud(background_color="white", max_words=2000, mask=alice_coloring,
                    stopwords=stopwords, max_font_size=40, random_state=42)
-    # generate word cloud
+    # Word cloud 생성
     wc.generate(text)
 
-    # create coloring from image
+    # 이미지에서 색상 생성
     image_colors = ImageColorGenerator(alice_coloring)
 
     # show
     fig, axes = plt.subplots(1, 3)
     axes[0].imshow(wc, interpolation="bilinear")
-    # recolor wordcloud and show
-    # we could also give color_func=image_colors directly in the constructor
+    # word cloud 색상 변경 후 show
+    # 생성자에게 직접적으로 color_func=image_colors를 줄 수 있다. 
     axes[1].imshow(wc.recolor(color_func=image_colors), interpolation="bilinear")
     axes[2].imshow(alice_coloring, cmap=plt.cm.gray, interpolation="bilinear")
     for ax in axes:
@@ -309,29 +309,29 @@ ImageColorGenerator에서 구현된 이미지 기반 색상 지정 방법을 사
     from os import path
     from wordcloud import WordCloud
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-    # It is important to use io.open to correctly load the file as UTF-8
+    # 파일을 UTF-8로 올바르게 로드하려면 io.open을 사용하는 것이 중요하다.
     text = io.open(path.join(d, 'happy-emoji.txt')).read()
 
-    # the regex used to detect words is a combination of normal words, ascii art, and emojis
+    # 단어 찾기에 사용되는 regex는 정상어, ascii art, emojis의 조합이다.
     # 2+ consecutive letters (also include apostrophes), e.x It's
     normal_word = r"(?:\w[\w']+)"
     # 2+ consecutive punctuations, e.x. :)
     ascii_art = r"(?:[{punctuation}][{punctuation}]+)".format(punctuation=string.punctuation)
-    # a single character that is not alpha_numeric or other ascii printable
+    # alpha_datable 또는 기타 아스키 print가 불가능한 단일 문자
     emoji = r"(?:[^\s])(?<![\w{ascii_printable}])".format(ascii_printable=string.printable)
     regexp = r"{normal_word}|{ascii_art}|{emoji}".format(normal_word=normal_word, ascii_art=ascii_art,
                                                          emoji=emoji)
 
-    # Generate a word cloud image
+    # World cloud 이미지 생성
     # The Symbola font includes most emoji
     font_path = path.join(d, 'fonts', 'Symbola', 'Symbola.ttf')
     wc = WordCloud(font_path=font_path, regexp=regexp).generate(text)
 
-    # Display the generated image:
-    # the matplotlib way:
+    # 생성된 이미지 표시:
+    # matplotlib 방식:
     import matplotlib.pyplot as plt
     plt.imshow(wc)
     plt.axis("off")
@@ -363,30 +363,30 @@ ImageColorGenerator에서 구현된 이미지 기반 색상 지정 방법을 사
         return "hsl(0, 0%%, %d%%)" % random.randint(60, 100)
 
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # getcwd()를 사용하여 생성된 IPython 노트북의 실행 예를 지원해야 하는 데이터 디렉토리 가져오기
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-    # read the mask image taken from
+    # mask 이미지 읽기 from
     # http://www.stencilry.org/stencils/movies/star%20wars/storm-trooper.gif
     mask = np.array(Image.open(path.join(d, "stormtrooper_mask.png")))
 
-    # movie script of "a new hope"
+    # "새로운 희망"의 영화 대본
     # http://www.imsdb.com/scripts/Star-Wars-A-New-Hope.html
-    # May the lawyers deem this fair use.
+    # 변호사들이 이 일을 공정하게 이용하기를 바란다.
     text = open(path.join(d, 'a_new_hope.txt')).read()
 
-    # pre-processing the text a little bit
+    # 본문을 조금 pre-processing
     text = text.replace("HAN", "Han")
     text = text.replace("LUKE'S", "Luke")
 
-    # adding movie script specific stopwords
+    # 영화 스크립트별 중요한 단어 추가
     stopwords = set(STOPWORDS)
     stopwords.add("int")
     stopwords.add("ext")
 
     wc = WordCloud(max_words=1000, mask=mask, stopwords=stopwords, margin=10,
                    random_state=1).generate(text)
-    # store default colored image
+    # 기본 컬러 이미지 저장
     default_colors = wc.to_array()
     plt.title("Custom colors")
     plt.imshow(wc.recolor(color_func=grey_color_func, random_state=3),
@@ -422,36 +422,36 @@ ImageColorGenerator에서 구현된 이미지 기반 색상 지정 방법을 사
 
     from wordcloud import WordCloud, ImageColorGenerator
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+   # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-    # load wikipedia text on rainbow
+    # 위키백과 텍스트를 무지개에 로드
     text = open(os.path.join(d, 'wiki_rainbow.txt')).read()
 
-    # load image. This has been modified in gimp to be brighter and have more saturation.
+    # 이미지 로드. 이것은 gimp에서 더 밝고 포화도를 갖도록 수정되었다.
     parrot_color = np.array(Image.open(os.path.join(d, "parrot-by-jose-mari-gimenez2.jpg")))
-    # subsample by factor of 3. Very lossy but for a wordcloud we don't really care.
+    # 3의 인수로 가라앉다. 매우 지루하지만, word cloud 별로 신경 쓰지 않는다.
     parrot_color = parrot_color[::3, ::3]
 
-    # create mask  white is "masked out"
+    # mask white 생성은 "masked out"
     parrot_mask = parrot_color.copy()
     parrot_mask[parrot_mask.sum(axis=2) == 0] = 255
 
-    # some finesse: we enforce boundaries between colors so they get less washed out.
-    # For that we do some edge detection in the image
+    # 몇몇의 기교: 우리는 색의 경계를 강화해서 색이 덜 씻겨지도록 한다.
+    # 이를 위해 이미지에서 edge 탐지를 한다.
     edges = np.mean([gaussian_gradient_magnitude(parrot_color[:, :, i] / 255., 2) for i in range(3)], axis=0)
     parrot_mask[edges > .08] = 255
 
-    # create wordcloud. A bit sluggish, you can subsample more strongly for quicker rendering
-    # relative_scaling=0 means the frequencies in the data are reflected less
-    # acurately but it makes a better picture
+    # word cloud 생성 약간 느리게, 렌더링 속도를 높이기 위해 더 강하게 서브 샘플링할 수 있음
+    # relative_reason=0은 데이터의 빈도가 적게 반영됨을 의미한다.
+    # 경솔하지만, 더 나은 그림을 만든다.
     wc = WordCloud(max_words=2000, mask=parrot_mask, max_font_size=40, random_state=42, relative_scaling=0)
 
-    # generate word cloud
+    # word cloud 생성
     wc.generate(text)
     plt.imshow(wc)
 
-    # create coloring from image
+    # 이미지로 색칠을 하다.
     image_colors = ImageColorGenerator(parrot_color)
     wc.recolor(color_func=image_colors)
     plt.figure(figsize=(10, 10))
@@ -501,37 +501,37 @@ Prefix dict has been built successfully.
 
     import jieba
     jieba.enable_parallel(4)
-    # Setting up parallel processes :4 ,but unable to run on Windows
+    # 병렬 프로세스 설정 :4 , 그러나 Windows에서 실행할 수 없음
     from os import path
     from imageio import imread
     import matplotlib.pyplot as plt
     import os
     # jieba.load_userdict("txt\userdict.txt")
-    # add userdict by load_userdict()
+    # load_userdict()에 의해 userdict 추가
     from wordcloud import WordCloud, ImageColorGenerator
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
     stopwords_path = d + '/wc_cn/stopwords_cn_en.txt'
-    # Chinese fonts must be set
+    # 중국어 글꼴을 설정해야 함
     font_path = d + '/fonts/SourceHanSerif/SourceHanSerifK-Light.otf'
 
-    # the path to save worldcloud
+    # worldcloud path 저장
     imgname1 = d + '/wc_cn/LuXun.jpg'
     imgname2 = d + '/wc_cn/LuXun_colored.jpg'
-    # read the mask / color image taken from
+    # 주어진 색상 이미지와 mask 읽기
     back_coloring = imread(path.join(d, d + '/wc_cn/LuXun_color.jpg'))
 
-    # Read the whole text.
+    # 전체 파일 읽기
     text = open(path.join(d, d + '/wc_cn/CalltoArms.txt')).read()
 
-    # if you want use wordCloud,you need it
-    # add userdict by add_word()
+    # wordcloud()를 원하면 사용할 수 있다.
+    # add_word()에 의해 userdict 추가
     userdict_list = ['阿Ｑ', '孔乙己', '单四嫂子']
 
 
-    # The function for processing text with Jieba
+    # Jieba에 의한 텍스트 처리 기능
     def jieba_processing_txt(text):
         for word in userdict_list:
             jieba.add_word(word)
@@ -556,19 +556,19 @@ Prefix dict has been built successfully.
 
     wc.generate(jieba_processing_txt(text))
 
-    # create coloring from image
+    # 색상 이미지 생성
     image_colors_default = ImageColorGenerator(back_coloring)
 
     plt.figure()
-    # recolor wordcloud and show
+    # word cloud 색상 변경 및 show
     plt.imshow(wc, interpolation="bilinear")
     plt.axis("off")
     plt.show()
 
-    # save wordcloud
+    # wordcloud 저장
     wc.to_file(path.join(d, imgname1))
 
-    # create coloring from image
+    # 이미지에 의한 색상 생성
     image_colors_byImg = ImageColorGenerator(back_coloring)
 
     # show
@@ -580,7 +580,7 @@ Prefix dict has been built successfully.
     plt.axis("off")
     plt.show()
 
-    # save wordcloud
+    # wordcloud 
     wc.to_file(path.join(d, imgname2))
 
 **Script의 총 실행 시간:** ( 0 분  12.194 초)
@@ -681,31 +681,31 @@ Prefix dict has been built successfully.
     If the implementation is easy to explain, it may be a good idea.
     Namespaces are one honking great idea -- let's do more of those!"""
 
-    # Since the text is small collocations are turned off and text is lower-cased
+    # 텍스트가 작은 경우 정렬이 해제되고 텍스트가 낮은 경우
     wc = WordCloud(collocations=False).generate(text.lower())
 
     color_to_words = {
-        # words below will be colored with a green single color function
+        # 아래의 단어는 green 단일 색상 기능으로 색칠됨
         '#00ff00': ['beautiful', 'explicit', 'simple', 'sparse',
                     'readability', 'rules', 'practicality',
                     'explicitly', 'one', 'now', 'easy', 'obvious', 'better'],
-        # will be colored with a red single color function
+        # 빨간색 단일 색상 기능으로 색상 지정
         'red': ['ugly', 'implicit', 'complex', 'complicated', 'nested',
                 'dense', 'special', 'errors', 'silently', 'ambiguity',
                 'guess', 'hard']
     }
 
-    # Words that are not in any of the color_to_words values
-    # will be colored with a grey single color function
+    # color_to_words 값에 없는 단어
+    # 회색 단일 색상 기능으로 색상 지정
     default_color = 'grey'
 
-    # Create a color function with single tone
+    # 단일 톤으로 색상 기능 생성
     # grouped_color_func = SimpleGroupedColorFunc(color_to_words, default_color)
 
-    # Create a color function with multiple tones
+    # 멀티 톤으로 색상 기능 생성
     grouped_color_func = GroupedColorFunc(color_to_words, default_color)
 
-    # Apply our color function
+    #  색상 적용 함수
     wc.recolor(color_func=grouped_color_func)
 
     # Plot
