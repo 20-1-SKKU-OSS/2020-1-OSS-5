@@ -501,37 +501,37 @@ Prefix dict has been built successfully.
 
     import jieba
     jieba.enable_parallel(4)
-    # Setting up parallel processes :4 ,but unable to run on Windows
+    # 병렬 프로세스 설정 :4 , 그러나 Windows에서 실행할 수 없음
     from os import path
     from imageio import imread
     import matplotlib.pyplot as plt
     import os
     # jieba.load_userdict("txt\userdict.txt")
-    # add userdict by load_userdict()
+    # load_userdict()에 의해 userdict 추가
     from wordcloud import WordCloud, ImageColorGenerator
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
     stopwords_path = d + '/wc_cn/stopwords_cn_en.txt'
-    # Chinese fonts must be set
+    # 중국어 글꼴을 설정해야 함
     font_path = d + '/fonts/SourceHanSerif/SourceHanSerifK-Light.otf'
 
-    # the path to save worldcloud
+    # worldcloud path 저장
     imgname1 = d + '/wc_cn/LuXun.jpg'
     imgname2 = d + '/wc_cn/LuXun_colored.jpg'
-    # read the mask / color image taken from
+    # 주어진 색상 이미지와 mask 읽기
     back_coloring = imread(path.join(d, d + '/wc_cn/LuXun_color.jpg'))
 
-    # Read the whole text.
+    # 전체 파일 읽기
     text = open(path.join(d, d + '/wc_cn/CalltoArms.txt')).read()
 
-    # if you want use wordCloud,you need it
-    # add userdict by add_word()
+    # wordcloud()를 원하면 사용할 수 있다.
+    # add_word()에 의해 userdict 추가
     userdict_list = ['阿Ｑ', '孔乙己', '单四嫂子']
 
 
-    # The function for processing text with Jieba
+    # Jieba에 의한 텍스트 처리 기능
     def jieba_processing_txt(text):
         for word in userdict_list:
             jieba.add_word(word)
@@ -556,19 +556,19 @@ Prefix dict has been built successfully.
 
     wc.generate(jieba_processing_txt(text))
 
-    # create coloring from image
+    # 색상 이미지 생성
     image_colors_default = ImageColorGenerator(back_coloring)
 
     plt.figure()
-    # recolor wordcloud and show
+    # word cloud 색상 변경 및 show
     plt.imshow(wc, interpolation="bilinear")
     plt.axis("off")
     plt.show()
 
-    # save wordcloud
+    # wordcloud 저장
     wc.to_file(path.join(d, imgname1))
 
-    # create coloring from image
+    # 이미지에 의한 색상 생성
     image_colors_byImg = ImageColorGenerator(back_coloring)
 
     # show
@@ -580,7 +580,7 @@ Prefix dict has been built successfully.
     plt.axis("off")
     plt.show()
 
-    # save wordcloud
+    # wordcloud 
     wc.to_file(path.join(d, imgname2))
 
 **Script의 총 실행 시간:** ( 0 분  12.194 초)
