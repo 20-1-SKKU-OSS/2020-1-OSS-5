@@ -375,18 +375,18 @@ ImageColorGenerator에서 구현된 이미지 기반 색상 지정 방법을 사
     # 변호사들이 이 일을 공정하게 이용하기를 바란다.
     text = open(path.join(d, 'a_new_hope.txt')).read()
 
-    # pre-processing the text a little bit
+    # 본문을 조금 pre-processing
     text = text.replace("HAN", "Han")
     text = text.replace("LUKE'S", "Luke")
 
-    # adding movie script specific stopwords
+    # 영화 스크립트별 중요한 단어 추가
     stopwords = set(STOPWORDS)
     stopwords.add("int")
     stopwords.add("ext")
 
     wc = WordCloud(max_words=1000, mask=mask, stopwords=stopwords, margin=10,
                    random_state=1).generate(text)
-    # store default colored image
+    # 기본 컬러 이미지 저장
     default_colors = wc.to_array()
     plt.title("Custom colors")
     plt.imshow(wc.recolor(color_func=grey_color_func, random_state=3),
