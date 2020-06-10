@@ -422,36 +422,36 @@ ImageColorGenerator에서 구현된 이미지 기반 색상 지정 방법을 사
 
     from wordcloud import WordCloud, ImageColorGenerator
 
-    # get data directory (using getcwd() is needed to support running example in generated IPython notebook)
+    # get data directory (getcwd()를 사용하여 생성된 IPython 노트북의 실행 예제를 지원해야 함)
     d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-    # load wikipedia text on rainbow
+    # 위키백과 텍스트를 무지개에 로드
     text = open(os.path.join(d, 'wiki_rainbow.txt')).read()
 
-    # load image. This has been modified in gimp to be brighter and have more saturation.
+    # 이미지 로드. 이것은 gimp에서 더 밝고 포화도를 갖도록 수정되었다.
     parrot_color = np.array(Image.open(os.path.join(d, "parrot-by-jose-mari-gimenez2.jpg")))
-    # subsample by factor of 3. Very lossy but for a wordcloud we don't really care.
+    # 3의 인수로 가라앉다. 매우 지루하지만, word cloud 별로 신경 쓰지 않는다.
     parrot_color = parrot_color[::3, ::3]
 
-    # create mask  white is "masked out"
+    # mask white 생성은 "masked out"
     parrot_mask = parrot_color.copy()
     parrot_mask[parrot_mask.sum(axis=2) == 0] = 255
 
-    # some finesse: we enforce boundaries between colors so they get less washed out.
-    # For that we do some edge detection in the image
+    # 몇몇의 기교: 우리는 색의 경계를 강화해서 색이 덜 씻겨지도록 한다.
+    # 이를 위해 이미지에서 edge 탐지를 한다.
     edges = np.mean([gaussian_gradient_magnitude(parrot_color[:, :, i] / 255., 2) for i in range(3)], axis=0)
     parrot_mask[edges > .08] = 255
 
-    # create wordcloud. A bit sluggish, you can subsample more strongly for quicker rendering
-    # relative_scaling=0 means the frequencies in the data are reflected less
-    # acurately but it makes a better picture
+    # word cloud 생성 약간 느리게, 렌더링 속도를 높이기 위해 더 강하게 서브 샘플링할 수 있음
+    # relative_reason=0은 데이터의 빈도가 적게 반영됨을 의미한다.
+    # 경솔하지만, 더 나은 그림을 만든다.
     wc = WordCloud(max_words=2000, mask=parrot_mask, max_font_size=40, random_state=42, relative_scaling=0)
 
-    # generate word cloud
+    # word cloud 생성
     wc.generate(text)
     plt.imshow(wc)
 
-    # create coloring from image
+    # 이미지로 색칠을 하다.
     image_colors = ImageColorGenerator(parrot_color)
     wc.recolor(color_func=image_colors)
     plt.figure(figsize=(10, 10))
