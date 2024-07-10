@@ -8,7 +8,7 @@ permalink: /about/
 <center>성균관대학교 오픈소스소프트웨어실습 5조</center>
 
 ## 팀원
-김희성 heesunkim010 (팀장)
+
 
 신성국 davidshyn1
 
